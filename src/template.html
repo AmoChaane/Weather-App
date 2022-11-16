@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="../src/style.css">
+    <!-- <script src="script.js" defer></script> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="overlay"><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+    <div class="container">
+        <div class="header">
+            <div class="first">
+                <div class="weatherType" style="font-size: 2em;"></div>
+                <div class="location"></div>
+                <div class="timeDate"></div>
+            </div>
+            <div class="search">
+                <div action="" class="form">
+                    <input type="text" placeholder="Search Location...">
+                    <button class="searchBtn">Search City</button>
+                </div>
+            </div>
+            <div class="convert">
+                <span class="celcius">&#x2103;</span>
+                <span style="font-size: 1.2em;">/</span>
+                <span class="fahrenheit">&#x2109;</span>
+            </div>
+        </div>
+        <div class="main">
+            <div class="firstInfo">
+                <h1 class="temp"></h1>
+                <div class="minMax">
+                    <div class="min"></div>
+                    <div class="max"></div>
+                </div>
+            </div>
+            <div class="secondInfo">
+                <div class="feelsLike"></div>
+                <div class="windSpeed"></div>
+                <div class="humidity"></div>
+                <div class="pressure"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
