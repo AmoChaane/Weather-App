@@ -31,6 +31,17 @@ module.exports = {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
             type: 'asset/resource',
         },
+        {
+            // Loader for webpack to process CSS with PostCSS
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: () => [
+                  autoprefixer
+                ]
+              }
+            }
+        }
     ],
 },
 };
