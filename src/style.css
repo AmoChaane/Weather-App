@@ -22,6 +22,10 @@ body {
     color: blue;
 }
 
+.celcius, .fahrenheit {
+    cursor: pointer;
+}
+
 /* ---------------------------------Loading Component----------------------------------------------------------- */
 #overlay {
     position: fixed;
