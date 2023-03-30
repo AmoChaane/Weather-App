@@ -252,9 +252,9 @@ const countries = {
 
 
 function elems() {
-    const weatherType = document.querySelector('.weatherType');
-    const location = document.querySelector('.location');
-    const timeDate = document.querySelector('.timeDate');
+    const weatherType = document.querySelectorAll('.weatherType');
+    const location = document.querySelectorAll('.location');
+    const timeDate = document.querySelectorAll('.timeDate');
     const searchInput = document.querySelector('input');
     const celcius = document.querySelectorAll('.celcius');
     const fahrenheit = document.querySelectorAll('.fahrenheit');
@@ -331,11 +331,14 @@ elems().searchBtn.addEventListener('click', async e => {
 
     elems().loading.style.display = 'none';
     elems().overlay.style.display = 'none';
-    elems().weatherType.textContent = capitalize(obj.result.weather[0].description);
+    elems().weatherType.forEach( i => i.textContent = capitalize(obj.result.weather[0].description))
+    // elems().weatherType.textContent = capitalize(obj.result.weather[0].description);
     const country = obj.result.sys.country;
-    elems().location.innerHTML = `${obj.result.name}, ${countries[country]}`;
+    elems().location.forEach(i => i.innerHTML = `${obj.result.name}, ${countries[country]}`)
+    // elems().location.innerHTML = `${obj.result.name}, ${countries[country]}`;
     // elems().timeDate.innerHTML = `${utils.formatDate(obj.result.dt, obj.result.timezone)}<br>${utils.formatTime(obj.result.dt, obj.result.timezone)}`;
-    elems().timeDate.innerHTML = `${utils.formatDate(obj.result.dt, obj.result.timezone)}`;
+    elems().timeDate.forEach(i => i.innerHTML = `${utils.formatDate(obj.result.dt, obj.result.timezone)}`)
+    // elems().timeDate.innerHTML = `${utils.formatDate(obj.result.dt, obj.result.timezone)}`;
     elems().temp.innerHTML = `${Math.round(obj.result.main.temp).toString()}&#x2103`;
     elems().min.innerHTML = `Min Temp:<br>${Math.round(obj.result.main.temp_min).toString()}&#x2103`;
     elems().max.innerHTML = `Max Temp:<br>${Math.round(obj.result.main.temp_max).toString()}&#x2103`;
