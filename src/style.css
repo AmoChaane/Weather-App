@@ -18,6 +18,10 @@ body {
     color: white;
 }
 
+.selected {
+    color: blue;
+}
+
 /* ---------------------------------Loading Component----------------------------------------------------------- */
 #overlay {
     position: fixed;

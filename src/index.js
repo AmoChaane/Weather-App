@@ -256,8 +256,8 @@ function elems() {
     const location = document.querySelector('.location');
     const timeDate = document.querySelector('.timeDate');
     const searchInput = document.querySelector('input');
-    const celcius = document.querySelector('.celcius');
-    const fahrenheit = document.querySelector('.fahrenheit');
+    const celcius = document.querySelectorAll('.celcius');
+    const fahrenheit = document.querySelectorAll('.fahrenheit');
     const temp = document.querySelector('.temp');
     const min = document.querySelector('.min');
     const max = document.querySelector('.max');
@@ -296,7 +296,8 @@ function capitalize(str) {
 window.onload = function() {
     elems().searchInput.value = 'London';
     elems().searchBtn.click();
-    elems().celcius.classList.add('selected');
+    // elems().celcius.classList.add('selected');
+    elems().celcius.forEach(i => i.classList.add('selected'))
     elems().searchInput.value = '';
 }
 
@@ -320,12 +321,14 @@ let objF;
 
 elems().searchBtn.addEventListener('click', async e => {
     // elems().loading.style.display = 'inline-block';
-    elems().celcius.click();
+    // elems().celcius.click();
     const city = elems().searchInput.value;
     // console.log(city);
     const obj = await getWeatherInfo(city);
     objC = {...obj.result};
     objF = {...obj.result2};
+    elems().celcius.forEach(i => i.click());
+
     elems().loading.style.display = 'none';
     elems().overlay.style.display = 'none';
     elems().weatherType.textContent = capitalize(obj.result.weather[0].description);
@@ -348,24 +351,32 @@ window.addEventListener('click', e => {
     if(e.code == 'Enter') elems().searchBtn.click();
 });
 
-
-elems().celcius.addEventListener('click', async e => {
-    elems().celcius.classList.add('selected');
-    elems().fahrenheit.classList.remove('selected');
-    // console.log(objC);
-    elems().temp.innerHTML = await `${Math.round(objC.main.temp).toString()}&#x2103`;
-    elems().min.innerHTML = `Min Temp:<br>${Math.round(objC.main.temp_min).toString()}&#x2103`;
-    
-    elems().max.innerHTML = `Max Temp:<br>${Math.round(objC.main.temp_max).toString()}&#x2103`;
-    elems().feelsLike.innerHTML = `Feels Like:<br>${Math.round(objC.main.feels_like).toString()}&#x2103`;
+elems().celcius.forEach(i => {
+    i.addEventListener('click', async e => {
+        // elems().celcius.classList.add('selected');
+        elems().celcius.forEach(i => i.classList.add('selected'))
+        // elems().fahrenheit.classList.remove('selected');
+        elems().fahrenheit.forEach(i => i.classList.remove('selected'))
+        console.log(objC);
+        elems().temp.innerHTML = await `${Math.round(objC.main.temp).toString()}&#x2103`;
+        elems().min.innerHTML = `Min Temp:<br>${Math.round(objC.main.temp_min).toString()}&#x2103`;
+        
+        elems().max.innerHTML = `Max Temp:<br>${Math.round(objC.main.temp_max).toString()}&#x2103`;
+        elems().feelsLike.innerHTML = `Feels Like:<br>${Math.round(objC.main.feels_like).toString()}&#x2103`;
+    });
 });
 
-elems().fahrenheit.addEventListener('click', e => {
-    elems().celcius.classList.remove('selected');
-    elems().fahrenheit.classList.add('selected');
-    elems().temp.innerHTML = `${Math.round(objF.main.temp).toString()}&#x2109;`;
-    elems().min.innerHTML = `Min Temp:<br>${Math.round(objF.main.temp_min).toString()}&#x2109;`;
-    elems().max.innerHTML = `Max Temp:<br>${Math.round(objF.main.temp_max).toString()}&#x2109;`;
-    elems().feelsLike.innerHTML = `Feels Like:<br>${Math.round(objF.main.feels_like).toString()}&#x2109;`;
+elems().fahrenheit.forEach(i => {
+    i.addEventListener('click', e => {
+        // console.log("clicked fahrenheit")
+        // elems().celcius.classList.remove('selected');
+        elems().celcius.forEach(i => i.classList.remove('selected'))
+        // elems().fahrenheit.classList.add('selected');
+        elems().fahrenheit.forEach(i => i.classList.add('selected'))
+        elems().temp.innerHTML = `${Math.round(objF.main.temp).toString()}&#x2109;`;
+        elems().min.innerHTML = `Min Temp:<br>${Math.round(objF.main.temp_min).toString()}&#x2109;`;
+        elems().max.innerHTML = `Max Temp:<br>${Math.round(objF.main.temp_max).toString()}&#x2109;`;
+        elems().feelsLike.innerHTML = `Feels Like:<br>${Math.round(objF.main.feels_like).toString()}&#x2109;`;
+    })
 });
 
