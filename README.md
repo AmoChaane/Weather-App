@@ -1,1 +1,1 @@
-Live Site: https://amochaane.io/Weather-App
+Live Site: https://amochaane.github.io/Weather-App
